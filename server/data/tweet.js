@@ -2,18 +2,14 @@ let tweets = [
     {
         id: '1',
         text: 'dream coder',
-        createdAt: Date.now().toString(),
-        name: 'Bob',
-        username: 'bob',
-        url: 'https://widgetwhats.com/router/uploads/2019/11/free-profile-photo-whatsrouter-1.png'
+        createdAt: new Date().toString(),
+        userId: '1'
     },
     {
         id: '2',
         text: 'Hi',
-        createdAt: Date.now().toString(),
-        name: 'Ellie',
-        username: 'ellie',
-        url: 'https://widgetwhats.com/router/uploads/2019/11/free-profile-photo-whatsrouter-1.png'
+        createdAt: new Date().toString(),
+        userId: '1'.
     }
 ]
 

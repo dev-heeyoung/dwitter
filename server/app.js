@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import tweetsRouter from './router/tweets.js'
+import authRouter from './router/auth.js'
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(morgan('tiny'));
 app.use(helmet());
 
 app.use('/tweets', tweetsRouter);
+app.use('/auth', authRouter)
+
 app.listen(8080, () => {
     console.log('listening on 8080');
 });
