@@ -17,8 +17,7 @@ export async function findById(id) {
 }
 
 export async function createUser(user) {
-    const newUser = { ...user, id: Date.now().toString() };
+    const newUser = { ...user, id: new Date().toString() };
     users.push(newUser);
     return newUser.id;
 }
-

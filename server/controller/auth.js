@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const jwtSecretKey = 'F2dN7x8HVzBWaQuEEDnhsvHXRWqAR63z';
-const jwtExpiresInDays = '2d';
+const jwtExpiresInDays = 2;
 const bcryptSaltRounds = 12;
-
+new Date().toString()
 export async function signup(req, res) {
     const { username, password, name, email, url } = req.body;
     const user = await userData.findByUsername(username);
@@ -50,5 +50,5 @@ export async function me(req, res) {
     if(!user) {
         return res.status(404).json( {message: 'User not found'});
     }
-    res.status(200).json({token: req.token, username: user.username})
+    res.status(200).json({token: req.token, username: user.username});
 }
