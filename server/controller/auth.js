@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const jwtSecretKey = 'F2dN7x8HVzBWaQuEEDnhsvHXRWqAR63z';
-const jwtExpiresInDays = 2;
+const jwtExpiresInDays = '2d';
 const bcryptSaltRounds = 12;
-new Date().toString()
+
 export async function signup(req, res) {
     const { username, password, name, email, url } = req.body;
     const user = await userData.findByUsername(username);
@@ -14,12 +14,12 @@ export async function signup(req, res) {
     }
 
     const hashed = await bcrypt.hash( password, bcryptSaltRounds )
-    const userId = userData.createUser({
+    const userId = await userData.createUser({
         username,
         password: hashed,
         name,
         email,
-        url
+        url,
     })
     const token = createJwtToken(userId);
     res.status(201).json({ token, username });
@@ -32,7 +32,7 @@ export async function login(req, res) {
         return res.status(401).json({message: `Invalid username or password`})
     }
 
-    const isValidPassword = bcrypt.compare( password, user.password );
+    const isValidPassword = await bcrypt.compare( password, user.password );
     if (!isValidPassword) {
         return res.status(401).json({message: `Invalid username or password`})
     }
