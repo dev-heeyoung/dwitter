@@ -1,32 +1,24 @@
-//password: abcd1234
-let users = [
-    {
-        id: '1',
-        username: 'bob',
-        password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',
-        name: 'Bob',
-        email: 'bob@gmail.com',
-        url: 'https://widgetwhats.com/router/uploads/2019/11/free-profile-photo-whatsrouter-1.png'
-    },
-    {
-        id: '2',
-        username: 'ellie',
-        password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',
-        name: 'Ellie',
-        email: 'ellie@gmail.com',
-    },
-];
+import {db} from '../db/database.js'
 
 export async function findByUsername(username) {
-    return users.find(user => user.username === username);
+    return db
+    .execute(
+        'SELECT * from users WHERE username=?', [username])
+        .then(result => result[0][0]);
 }
 
 export async function findById(id) {
-    return users.find(user => user.id === id);
+    return db
+    .execute(
+        'SELECT * from users WHERE id=?', [id])
+        .then(result => result[0][0]);
 }
 
 export async function createUser(user) {
-    const newUser = { ...user, id: Date.now().toString() };
-    users.push(newUser);
-    return newUser.id;
+    const {username, password, name, email, url} = user;
+    return db
+    .execute(
+        'INSERT INTO users (username, password, name, email, url) VALUES (?,?,?,?,?)', 
+        [username, password, name, email, url])
+        .then(result => result[0].insertId);
 }
