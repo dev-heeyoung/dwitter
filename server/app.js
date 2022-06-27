@@ -10,8 +10,13 @@ import { sequelize } from './db/database.js'
 
 const app = express();
 
+const corsOption = {
+    origin: config.cors.allowedOrigin,
+    optionSucessStatus: 200,
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(morgan('tiny'));
 app.use(helmet());
 
@@ -28,8 +33,9 @@ app.use((error, req, res, next) => {
 })
 
 sequelize.sync().then(() => {
-    const server = app.listen(config.host.port, () => {
-        console.log(`listening on ${config.host.port}`);
+    const server = app.listen(config.port, () => {
+        console.log(`listening on ${config.port}`);
     });
     initSocket(server);
 })
+

@@ -6,3 +6,12 @@ export const sequelize = new SQ.Sequelize(database, user, password, {
     host,
     dialect: 'mysql'
 })
+
+// const pool = mysql.createPool({
+//     host,
+//     user,
+//     database,
+//     password
+// });
+
+// export const db = pool.promise();
