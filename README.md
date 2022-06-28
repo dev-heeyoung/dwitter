@@ -8,6 +8,7 @@ https://dwitterclone.netlify.app
 - Languages: JavaScript  
 - Backend: nodeJs, express, RestAPIs, session&cookies, JWT, Bcrypt, Configuration, Validation, Socket
 - Database: MySQL, Sequelize, MongoDB, Mongoose
+- Deploy: Netlify, Heroku
 
 # Description
 - Twitter clone coding (Live chat application)
