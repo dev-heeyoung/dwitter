@@ -10,14 +10,14 @@ https://dwitterclone.netlify.app
 - Database: MySQL, Sequelize, MongoDB, Mongoose
 
 # Description
-
-
+- Twitter clone coding (Live chat application)
 
 # API spec
 
 ## Tweets
 
-- `TWEET` Schema
+- `TWEET` Schema  
+
     ```
     {
       id: string,  // tweet id
